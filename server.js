@@ -11,20 +11,20 @@ wss.on('connection', ws => {
   clients.add(ws);
   console.log('New client connected');
 
-  ws.on('message', message => {
-    // Decode Buffer to string if the message is in Buffer format
-    const messageString = message.toString();
+  ws.on('message', (message) => {
+    // Ensure we decode the buffer to string first
+    const messageString = message.toString(); // Convert Buffer to string
     console.log('Received:', messageString);
 
-    // Now the message is in string format, parse it as JSON
     try {
+      // Parse the message as JSON
       const data = JSON.parse(messageString);
       console.log('Parsed data:', data);
 
       // Relay the message to all *other* clients
       for (const client of clients) {
         if (client !== ws && client.readyState === WebSocket.OPEN) {
-          client.send(messageString); // Send as string (not buffer)
+          client.send(messageString); // Send the stringified JSON
         }
       }
     } catch (error) {
@@ -37,7 +37,6 @@ wss.on('connection', ws => {
     console.log('Client disconnected');
   });
 });
-
 
 // Use the port provided by Render's environment
 const PORT = process.env.PORT || 8080;
