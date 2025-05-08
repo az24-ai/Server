@@ -1,0 +1,24 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/az24-ai/Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/az24-ai/Server/issues"
+  },
+  "homepage": "https://github.com/az24-ai/Server#readme",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.2"
+  }
+}
