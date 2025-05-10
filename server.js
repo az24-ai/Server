@@ -3,7 +3,7 @@ const http = require('http');
 const jwt = require('jsonwebtoken');
 
 // Replace with your JWT secret (ideally store in environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+const JWT_SECRET = process.env.JWT_SECRET || 'RF_PAYload_Project';
 
 // Create HTTP server
 const server = http.createServer();
@@ -29,7 +29,12 @@ server.on('upgrade', (request, socket, head) => {
     socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
     socket.destroy();
   }
+
+
+
 });
+
+
 
 wss.on('connection', (ws, request) => {
   clients.add(ws);
