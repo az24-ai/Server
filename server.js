@@ -12,7 +12,6 @@ wss.on('connection', ws => {
   console.log('New client connected');
 
   ws.on('message', (message) => {
-    // Ensure we decode the buffer to string first
     const messageString = message.toString(); // Convert Buffer to string
     console.log('Received:', messageString);
 
