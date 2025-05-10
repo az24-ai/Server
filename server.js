@@ -3,7 +3,7 @@ const http = require('http');
 const jwt = require('jsonwebtoken');
 
 // Replace with your JWT secret (ideally store in environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'RF_PAYload_Project';
+const JWT_SECRET = process.env.JWT_SECRET || 'RF_PAYLOAD_P_PROJECT';
 
 // Create HTTP server
 const server = http.createServer();
