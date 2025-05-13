@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const http = require('http');
 
-const PASSWORD = 'your_secure_password';  // Set your password here
+const PASSWORD = 'eyJ1c2VyIjoiZHJvbmUtY2xpZW50LTEiLCJyb2xlIjoidGVsZW1ldHJ5LXNlbmRlciIsImFsZyI6IkhTMjU2In0.eyJ1c2VyIjoiZHJvbmUtY2xpZW50LTEiLCJyb2xlIjoidGVsZW1ldHJ5LXNlbmRlciJ9.94ixMX90qQjl0Z3SEwMqJbv7QfMf8l9QbcWmRgdpizg';  // Set your password here
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
