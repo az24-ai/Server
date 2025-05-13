@@ -5,9 +5,11 @@ import json
 t = 0
 c = 0
 
-JWT_TOKEN = "RF_Payload_Project"
+# Replace with your actual JWT token
+JWT_TOKEN = "eyJ1c2VyIjoiZHJvbmUtY2xpZW50LTEiLCJyb2xlIjoidGVsZW1ldHJ5LXNlbmRlciIsImFsZyI6IkhTMjU2In0.eyJ1c2VyIjoiZHJvbmUtY2xpZW50LTEiLCJyb2xlIjoidGVsZW1ldHJ5LXNlbmRlciJ9.0HpwNedoKcfE1y4Oso1oowYExtNqEqqb6_CfYHXV0Vg"
 
 def send_telemetry():
+    # Include the JWT as a subprotocol
     ws = websocket.WebSocket()
     ws.connect("wss://websocket-server-zpjf.onrender.com", subprotocols=[JWT_TOKEN])
 
