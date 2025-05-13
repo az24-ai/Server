@@ -2,16 +2,13 @@ const WebSocket = require('ws');
 const http = require('http');
 const jwt = require('jsonwebtoken');
 
-// Replace with your JWT secret (ideally store in environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'RF_Payload_Project';
+const JWT_SECRET = process.env.JWT_SECRET || 'YOUR_JWT_TOKEN';
 
-// Create HTTP server
 const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
 
 const clients = new Set();
 
-// Upgrade HTTP request to WebSocket with authentication
 server.on('upgrade', (request, socket, head) => {
   const protocols = request.headers['sec-websocket-protocol'];
   const token = Array.isArray(protocols) ? protocols[0] : protocols;
