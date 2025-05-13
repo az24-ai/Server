@@ -3,7 +3,7 @@ const http = require('http');
 const jwt = require('jsonwebtoken');
 
 // Replace with your JWT secret (ideally store in environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'RF_PAYLOAD_P_PROJECT';
+const JWT_SECRET = process.env.JWT_SECRET || 'RF_Payload_Project';
 
 // Create HTTP server
 const server = http.createServer();
@@ -33,7 +33,6 @@ server.on('upgrade', (request, socket, head) => {
 
 
 });
-
 
 
 wss.on('connection', (ws, request) => {
