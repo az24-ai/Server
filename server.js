@@ -1,8 +1,7 @@
 const WebSocket = require('ws');
 const http = require('http');
-const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'YOUR_JWT_TOKEN';
+const PASSWORD = 'your_secure_password';  // Set your password here
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ noServer: true });
@@ -11,30 +10,25 @@ const clients = new Set();
 
 server.on('upgrade', (request, socket, head) => {
   const protocols = request.headers['sec-websocket-protocol'];
-  const token = Array.isArray(protocols) ? protocols[0] : protocols;
+  const password = Array.isArray(protocols) ? protocols[0] : protocols;
 
-  try {
-    const payload = jwt.verify(token, JWT_SECRET);
-    // Attach payload to request object for access in 'connection'
-    request.user = payload;
-
-    wss.handleUpgrade(request, socket, head, (ws) => {
-      wss.emit('connection', ws, request);
-    });
-  } catch (err) {
-    console.log('JWT Auth Failed:', err.message);
+  // Check if the provided password matches
+  if (password !== PASSWORD) {
+    console.log('Unauthorized connection attempt');
     socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
     socket.destroy();
+    return;
   }
 
-
-
+  // If password is correct, proceed with connection
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
+  });
 });
-
 
 wss.on('connection', (ws, request) => {
   clients.add(ws);
-  console.log('New client connected:', request.user); // You now have access to user info
+  console.log('New client connected');
 
   ws.on('message', (message) => {
     const messageString = message.toString();
